@@ -1,0 +1,45 @@
+<div class="col-sm-12">
+    <mat-card>
+        <div>
+            <div class="col-sm-12">
+                <mat-card>
+                    <div id="chartdiv"></div>
+                </mat-card>
+            </div>
+            <div class="col-sm-12">
+                <mat-card>
+                    <mat-form-field class="full-width">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                    <div class="example-container mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="Country">
+                                <th mat-header-cell *matHeaderCellDef> Country </th>
+                                <td mat-cell *matCellDef="let element"> {{element.Country}}</td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="NewConfirmed">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> New Confirmed </th>
+                                <td mat-cell *matCellDef="let element"> {{element.NewConfirmed}} </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="TotalConfirmed">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Confirmed </th>
+                                <td mat-cell *matCellDef="let element"> {{element.TotalConfirmed}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+                            [pageSizeOptions]="[25, 50, 100, 250]">
+                        </mat-paginator>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card>
+</div>
